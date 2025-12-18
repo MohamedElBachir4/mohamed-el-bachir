@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souati Mohamed El Bachir | Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --border-color: #e5e5e5;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: #ffffff;
+            --section-bg: #f9fafb;
+            --hover-shadow: rgba(0, 0, 0, 0.08);
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --border-color: #333333;
+            --nav-bg: rgba(26, 26, 26, 0.95);
+            --card-bg: #2a2a2a;
+            --section-bg: #1f1f1f;
+            --hover-shadow: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background-color: var(--border-color);
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        
+        .skill-icon {
+            transition: transform 0.2s ease;
+        }
+        
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1);
+        }
+        
+        .project-card {
+            transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+        }
+        
+        .project-card:hover {
+            box-shadow: 0 10px 30px var(--hover-shadow);
+            transform: translateY(-5px);
+        }
+        
+        .social-icon {
+            transition: opacity 0.2s ease;
+        }
+        
+        .social-icon:hover {
+            opacity: 0.7;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .dark-mode-toggle {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                animation: fadeIn 0.3s ease;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .skills-scroll-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        #skills {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        .skills-scroll {
+            display: inline-flex;
+            gap: 1.5rem;
+            animation: scroll 30s linear infinite;
+        }
+        
+        .skills-scroll:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .skill-item {
+            flex-shrink: 0;
+            width: 150px;
+        }
+        
+        /* Dark mode styles for various elements */
+        nav, footer, section {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .bg-white {
+            background-color: var(--card-bg) !important;
+        }
+        
+        .bg-gray-50 {
+            background-color: var(--section-bg) !important;
+        }
+        
+        .border-gray-100, .border-gray-200, .border-gray-300 {
+            border-color: var(--border-color) !important;
+        }
+        
+        .text-gray-600, .text-gray-700 {
+            color: var(--text-color) !important;
+            opacity: 0.8;
+        }
+        
+        [data-theme="dark"] .text-gray-600,
+        [data-theme="dark"] .text-gray-700 {
+            opacity: 0.9;
+        }
+        
+        .text-black {
+            color: var(--text-color) !important;
+        }
+        
+        .border-black {
+            border-color: var(--text-color) !important;
+        }
+        
+        /* Skill cards */
+        .skill-card > div {
+            background-color: var(--section-bg) !important;
+            border-color: var(--border-color) !important;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        /* Project cards */
+        .project-card {
+            background-color: var(--card-bg) !important;
+        }
+        
+        /* Buttons */
+        .bg-black {
+            background-color: var(--text-color) !important;
+        }
+        
+        /* Button text color - white in light mode, black in dark mode */
+        .bg-black.text-white {
+            color: var(--bg-color) !important;
+        }
+        
+        [data-theme="dark"] .bg-black.text-white {
+            color: #000000 !important;
+        }
+        
+        .hover\:bg-gray-800:hover {
+            background-color: var(--text-color) !important;
+            opacity: 0.9;
+        }
+        
+        /* Contact Me button border */
+        .border-gray-300 {
+            border-color: var(--border-color) !important;
+        }
+        
+        .hover\:border-black:hover {
+            border-color: var(--text-color) !important;
+        }
+        
+        /* Contact Me button hover effect in dark mode */
+        [data-theme="dark"] .border-gray-300:hover {
+            background-color: var(--text-color) !important;
+            color: var(--bg-color) !important;
+        }
+        
+        /* Ensure text color is correct in dark mode */
+        [data-theme="dark"] .text-gray-600,
+        [data-theme="dark"] .text-gray-700 {
+            color: var(--text-color) !important;
+        }
+        
+        /* Project category badges - black text in dark mode */
+        [data-theme="dark"] .bg-gray-100.text-gray-700 {
+            background-color: var(--text-color) !important;
+            color: #000000 !important;
+        }
+        
+        /* Profile image icons - white background with black icons in dark mode */
+        [data-theme="dark"] .bg-gray-100.rounded-full {
+            background-color: var(--text-color) !important;
+        }
+        
+        [data-theme="dark"] .bg-gray-100.rounded-full i {
+            color: #000000 !important;
+        }
+        
+        /* Social icons */
+        .social-icon > div {
+            border-color: var(--border-color) !important;
+            transition: border-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full z-50 backdrop-blur-sm py-4 border-b transition-colors duration-300" style="background-color: var(--nav-bg); border-color: var(--border-color);">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-xl font-bold">
+                <span class="text-black">Mohamed El Bachir</span>
+            </div>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button id="dark-mode-toggle" class="dark-mode-toggle ml-4 text-xl" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+            </div>
+            <div class="flex items-center space-x-4 md:hidden">
+                <button id="dark-mode-toggle-mobile" class="dark-mode-toggle text-xl" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" id="theme-icon-mobile"></i>
+                </button>
+                <button id="mobile-menu-btn" class="text-xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 px-6 py-4 border-b mobile-menu transition-colors duration-300" style="background-color: var(--nav-bg); border-color: var(--border-color);">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="py-2 border-b border-gray-100">Home</a>
+                <a href="#skills" class="py-2 border-b border-gray-100">Skills</a>
+                <a href="#projects" class="py-2 border-b border-gray-100">Projects</a>
+                <a href="#about" class="py-2 border-b border-gray-100">About</a>
+                <a href="#contact" class="py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6 fade-in">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2">
+                    <div class="text-sm font-medium text-gray-600 mb-4">FULL STACK DEVELOPER & COMPUTER SCIENCE STUDENT</div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        Souati Mohamed<br>El Bachir
+                    </h1>
+                    <p class="text-gray-700 text-lg mb-8 max-w-2xl">
+                        Creating clean, functional, and efficient digital solutions with a focus on simplicity and performance.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#projects" class="bg-black text-white px-6 py-3 rounded font-medium transition-all hover:bg-gray-800">
+                            View Projects
+                        </a>
+                        <a href="#contact" class="border border-gray-300 px-6 py-3 rounded font-medium transition-all hover:border-black">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 mt-16 lg:mt-0 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-72 md:h-72">
+                        <div class="w-full h-full border border-gray-200 rounded-full overflow-hidden">
+                            <img src="PHOTO.JPEG" alt="Souati Mohamed El Bachir" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16">
+        <div class="mb-12 text-center">
+            <h2 class="text-3xl font-bold">Technical Skills</h2>
+        </div>
+        <div class="skills-scroll-container">
+                <div class="skills-scroll">
+                    <!-- First set of skills -->
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-16 h-16 skill-icon mb-4" alt="HTML">
+                            <h3 class="font-semibold">HTML5</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-16 h-16 skill-icon mb-4" alt="CSS">
+                            <h3 class="font-semibold">CSS3</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-16 h-16 skill-icon mb-4" alt="JavaScript">
+                            <h3 class="font-semibold">JavaScript</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Tailwind CSS" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg'">
+                            <h3 class="font-semibold">Tailwind CSS</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="w-16 h-16 skill-icon mb-4" alt="React">
+                            <h3 class="font-semibold">React.js</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Node.js" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg'">
+                            <h3 class="font-semibold">Node.js</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-16 h-16 skill-icon mb-4" alt="PHP">
+                            <h3 class="font-semibold">PHP</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Python">
+                            <h3 class="font-semibold">Python</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-16 h-16 skill-icon mb-4" alt="C++">
+                            <h3 class="font-semibold">C++</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Java">
+                            <h3 class="font-semibold">Java</h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-16 h-16 skill-icon mb-4" alt="HTML">
+                            <h3 class="font-semibold">HTML5</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-16 h-16 skill-icon mb-4" alt="CSS">
+                            <h3 class="font-semibold">CSS3</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-16 h-16 skill-icon mb-4" alt="JavaScript">
+                            <h3 class="font-semibold">JavaScript</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Tailwind CSS" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg'">
+                            <h3 class="font-semibold">Tailwind CSS</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="w-16 h-16 skill-icon mb-4" alt="React">
+                            <h3 class="font-semibold">React.js</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Node.js" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg'">
+                            <h3 class="font-semibold">Node.js</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-16 h-16 skill-icon mb-4" alt="PHP">
+                            <h3 class="font-semibold">PHP</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Python">
+                            <h3 class="font-semibold">Python</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-16 h-16 skill-icon mb-4" alt="C++">
+                            <h3 class="font-semibold">C++</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item skill-card">
+                        <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Java">
+                            <h3 class="font-semibold">Java</h3>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Project 1: Choffly -->
+                <div class="project-card bg-white rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="choffly.png" alt="Choffly" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Choffly</h3>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Web App</span>
+                        </div>
+                        <p class="text-gray-700 mb-6">
+                            Website for comparing airline ticket prices with smart price analysis and easy booking comparison.
+                        </p>
+                        <a href="https://www.choffly.com/" target="_blank" rel="noopener noreferrer" class="inline-block bg-black text-white px-6 py-2 rounded font-medium transition-all hover:bg-gray-800 text-center w-full">
+                            Visit Project
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Mak-Luxury -->
+                <div class="project-card bg-white rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="mak.png" alt="Mak-Luxury" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Mak-Luxury</h3>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Real Estate</span>
+                        </div>
+                        <p class="text-gray-700 mb-6">
+                            Real estate website for a Dubai-based developer with AI features for property recommendations.
+                        </p>
+                        <a href="https://mohamedelbachir4.github.io/mak-luxury/" target="_blank" rel="noopener noreferrer" class="inline-block bg-black text-white px-6 py-2 rounded font-medium transition-all hover:bg-gray-800 text-center w-full">
+                            Visit Project
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Letters -->
+                <div class="project-card bg-white rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="korni.png" alt="Letters" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Letters</h3>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Educational</span>
+                        </div>
+                        <p class="text-gray-700 mb-6">
+                            Educational game teaching kids letters using linear phonological awareness with AI-based feedback.
+                        </p>
+                        <a href="https://korni-fatima.vercel.app/index.html" target="_blank" rel="noopener noreferrer" class="inline-block bg-black text-white px-6 py-2 rounded font-medium transition-all hover:bg-gray-800 text-center w-full">
+                            Visit Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Professional Description Section -->
+    <section id="about" class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Professional Approach</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">High Professionalism</h3>
+                        <p class="text-gray-700">
+                            Elegant development with a focus on quality, precision, and premium user experience.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Timely Delivery</h3>
+                        <p class="text-gray-700">
+                            Guaranteed delivery on time, with regular communication and milestone updates.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-lg border border-gray-200">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-4">More than 3 years of hands-on experience</h3>
+                        <p class="text-gray-700">
+                            With extensive experience in web and application development, I deliver solutions that combine aesthetic elegance with robust functionality.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div>
+                            <div class="text-2xl font-bold mb-2">100%</div>
+                            <div class="text-gray-600">Client Satisfaction</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold mb-2">10+</div>
+                            <div class="text-gray-600">Projects Completed</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold mb-2">24/7</div>
+                            <div class="text-gray-600">Support Available</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold mb-2">3+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Social Media Section -->
+    <section id="contact" class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Connect With Me</h2>
+            
+            <div class="flex justify-center flex-wrap gap-6 mb-12">
+                <!-- Facebook -->
+                <a href="#" class="social-icon">
+                    <div class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </div>
+                </a>
+                
+                <!-- Instagram -->
+                <a href="#" class="social-icon">
+                    <div class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </div>
+                </a>
+                
+                <!-- TikTok -->
+                <a href="#" class="social-icon">
+                    <div class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </div>
+                </a>
+                
+                <!-- YouTube -->
+                <a href="#" class="social-icon">
+                    <div class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </div>
+                </a>
+                
+                <!-- LinkedIn -->
+                <a href="#" class="social-icon">
+                    <div class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </div>
+                </a>
+                
+                <!-- WhatsApp -->
+                <a href="#" class="social-icon">
+                    <div class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="text-center">
+                <a href="mailto:contact@souati.dev" class="inline-flex items-center text-lg font-medium border-b border-black pb-1">
+                    <i class="fas fa-envelope mr-3"></i> souatimohamed47@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-gray-200">
+        <div class="container mx-auto">
+            <div class="text-center text-gray-600">
+                © 2025 Souati Mohamed El Bachir. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeIconMobile = document.getElementById('theme-icon-mobile');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            themeIconMobile.classList.remove('fa-moon');
+            themeIconMobile.classList.add('fa-sun');
+        }
+        
+        function toggleDarkMode() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update icons
+            if (newTheme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                themeIconMobile.classList.remove('fa-moon');
+                themeIconMobile.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                themeIconMobile.classList.remove('fa-sun');
+                themeIconMobile.classList.add('fa-moon');
+            }
+        }
+        
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+        darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('mobile-menu-btn').querySelector('i').classList.remove('fa-times');
+                document.getElementById('mobile-menu-btn').querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
