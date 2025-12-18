@@ -1,9 +1,18 @@
 <!DOCTYPE html>
+<!-- 
+    REQUIRED IMAGES - Make sure these files are in the same directory as index.html:
+    - PHOTO.JPEG (Profile photo)
+    - choffly.png (Choffly project image)
+    - mak.png (Mak-Luxury project image)
+    - korni.png (Letters project image)
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Souati Mohamed El Bachir | Full Stack Developer</title>
+    <link rel="icon" type="image/jpeg" href="PHOTO.JPEG">
+    <link rel="preload" as="image" href="PHOTO.JPEG" fetchpriority="high">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -326,7 +335,7 @@
                 <div class="lg:w-1/2 mt-16 lg:mt-0 flex justify-center">
                     <div class="relative w-64 h-64 md:w-72 md:h-72">
                         <div class="w-full h-full border border-gray-200 rounded-full overflow-hidden">
-                            <img src="PHOTO.JPEG" alt="Souati Mohamed El Bachir" class="w-full h-full object-cover">
+                            <img src="PHOTO.JPEG" alt="Souati Mohamed El Bachir" class="w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null; this.src='PHOTO.JPEG'; this.style.display='block';">
                         </div>
                         <div class="absolute top-0 right-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
                             <i class="fas fa-code"></i>
@@ -352,70 +361,70 @@
                     <!-- First set of skills -->
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-16 h-16 skill-icon mb-4" alt="HTML">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-16 h-16 skill-icon mb-4" alt="HTML" loading="lazy">
                             <h3 class="font-semibold">HTML5</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-16 h-16 skill-icon mb-4" alt="CSS">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-16 h-16 skill-icon mb-4" alt="CSS" loading="lazy">
                             <h3 class="font-semibold">CSS3</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-16 h-16 skill-icon mb-4" alt="JavaScript">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-16 h-16 skill-icon mb-4" alt="JavaScript" loading="lazy">
                             <h3 class="font-semibold">JavaScript</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Tailwind CSS" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg'">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Tailwind CSS" loading="lazy" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg'">
                             <h3 class="font-semibold">Tailwind CSS</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="w-16 h-16 skill-icon mb-4" alt="React">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="w-16 h-16 skill-icon mb-4" alt="React" loading="lazy">
                             <h3 class="font-semibold">React.js</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Node.js" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg'">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Node.js" loading="lazy" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg'">
                             <h3 class="font-semibold">Node.js</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-16 h-16 skill-icon mb-4" alt="PHP">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-16 h-16 skill-icon mb-4" alt="PHP" loading="lazy">
                             <h3 class="font-semibold">PHP</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Python">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Python" loading="lazy">
                             <h3 class="font-semibold">Python</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-16 h-16 skill-icon mb-4" alt="C++">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-16 h-16 skill-icon mb-4" alt="C++" loading="lazy">
                             <h3 class="font-semibold">C++</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Java">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Java" loading="lazy">
                             <h3 class="font-semibold">Java</h3>
                         </div>
                     </div>
@@ -423,70 +432,70 @@
                     <!-- Duplicate set for seamless loop -->
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-16 h-16 skill-icon mb-4" alt="HTML">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-16 h-16 skill-icon mb-4" alt="HTML" loading="lazy">
                             <h3 class="font-semibold">HTML5</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-16 h-16 skill-icon mb-4" alt="CSS">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-16 h-16 skill-icon mb-4" alt="CSS" loading="lazy">
                             <h3 class="font-semibold">CSS3</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-16 h-16 skill-icon mb-4" alt="JavaScript">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-16 h-16 skill-icon mb-4" alt="JavaScript" loading="lazy">
                             <h3 class="font-semibold">JavaScript</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Tailwind CSS" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg'">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Tailwind CSS" loading="lazy" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg'">
                             <h3 class="font-semibold">Tailwind CSS</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="w-16 h-16 skill-icon mb-4" alt="React">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="w-16 h-16 skill-icon mb-4" alt="React" loading="lazy">
                             <h3 class="font-semibold">React.js</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Node.js" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg'">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Node.js" loading="lazy" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg'">
                             <h3 class="font-semibold">Node.js</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-16 h-16 skill-icon mb-4" alt="PHP">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-16 h-16 skill-icon mb-4" alt="PHP" loading="lazy">
                             <h3 class="font-semibold">PHP</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Python">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Python" loading="lazy">
                             <h3 class="font-semibold">Python</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-16 h-16 skill-icon mb-4" alt="C++">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-16 h-16 skill-icon mb-4" alt="C++" loading="lazy">
                             <h3 class="font-semibold">C++</h3>
                         </div>
                     </div>
                     
                     <div class="skill-item skill-card">
                         <div class="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center h-full border border-gray-200">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Java">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-16 h-16 skill-icon mb-4" alt="Java" loading="lazy">
                             <h3 class="font-semibold">Java</h3>
                         </div>
                     </div>
@@ -503,7 +512,7 @@
                 <!-- Project 1: Choffly -->
                 <div class="project-card bg-white rounded-lg overflow-hidden">
                     <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
-                        <img src="choffly.png" alt="Choffly" class="w-full h-full object-cover">
+                        <img src="choffly.png" alt="Choffly" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='./choffly.png'; this.alt='Choffly Project';">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
@@ -522,7 +531,7 @@
                 <!-- Project 2: Mak-Luxury -->
                 <div class="project-card bg-white rounded-lg overflow-hidden">
                     <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
-                        <img src="mak.png" alt="Mak-Luxury" class="w-full h-full object-cover">
+                        <img src="mak.png" alt="Mak-Luxury" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='./mak.png'; this.alt='Mak-Luxury Project';">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
@@ -541,7 +550,7 @@
                 <!-- Project 3: Letters -->
                 <div class="project-card bg-white rounded-lg overflow-hidden">
                     <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
-                        <img src="korni.png" alt="Letters" class="w-full h-full object-cover">
+                        <img src="korni.png" alt="Letters" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='./korni.png'; this.alt='Letters Project';">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
@@ -764,6 +773,41 @@
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+        
+        // Image loading verification
+        window.addEventListener('load', function() {
+            const requiredImages = [
+                { src: 'PHOTO.JPEG', alt: 'Profile Photo' },
+                { src: 'choffly.png', alt: 'Choffly Project' },
+                { src: 'mak.png', alt: 'Mak-Luxury Project' },
+                { src: 'korni.png', alt: 'Letters Project' }
+            ];
+            
+            requiredImages.forEach(function(imgInfo) {
+                const img = new Image();
+                img.onload = function() {
+                    console.log('✓ Image loaded successfully: ' + imgInfo.src);
+                };
+                img.onerror = function() {
+                    console.warn('⚠ Image failed to load: ' + imgInfo.src + ' - Please ensure the file exists in the same directory as index.html');
+                    // Try alternative paths
+                    const imgElements = document.querySelectorAll('img[src="' + imgInfo.src + '"]');
+                    imgElements.forEach(function(el) {
+                        if (!el.complete || el.naturalHeight === 0) {
+                            // Try with ./ prefix
+                            const altSrc = './' + imgInfo.src;
+                            const testImg = new Image();
+                            testImg.onload = function() {
+                                el.src = altSrc;
+                                console.log('✓ Image found with ./ prefix: ' + altSrc);
+                            };
+                            testImg.src = altSrc;
+                        }
+                    });
+                };
+                img.src = imgInfo.src;
             });
         });
     </script>
