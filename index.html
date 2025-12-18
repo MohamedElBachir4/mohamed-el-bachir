@@ -12,7 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Souati Mohamed El Bachir | Full Stack Developer</title>
     <link rel="icon" type="image/jpeg" href="PHOTO.JPEG">
-    <link rel="preload" as="image" href="PHOTO.JPEG" fetchpriority="high">
+    <link rel="preload" as="image" href="PHOTO.JPEG" fetchpriority="high" crossorigin="anonymous">
+    <!-- Fallback preload attempts -->
+    <link rel="preload" as="image" href="./PHOTO.JPEG" fetchpriority="high" crossorigin="anonymous" onerror="this.remove();">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -271,6 +273,32 @@
             border-color: var(--border-color) !important;
             transition: border-color 0.3s ease;
         }
+        
+        /* Profile image optimization */
+        #profile-photo {
+            transition: opacity 0.3s ease;
+            will-change: opacity;
+        }
+        
+        #profile-photo:not([src=""]) {
+            opacity: 1;
+        }
+        
+        #profile-photo[src=""] {
+            opacity: 0;
+        }
+        
+        /* Image loading placeholder */
+        .image-loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
     </style>
 </head>
 <body>
@@ -334,8 +362,8 @@
                 </div>
                 <div class="lg:w-1/2 mt-16 lg:mt-0 flex justify-center">
                     <div class="relative w-64 h-64 md:w-72 md:h-72">
-                        <div class="w-full h-full border border-gray-200 rounded-full overflow-hidden">
-                            <img src="PHOTO.JPEG" alt="Souati Mohamed El Bachir" class="w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null; this.src='PHOTO.JPEG'; this.style.display='block';">
+                        <div class="w-full h-full border border-gray-200 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+                            <img id="profile-photo" src="PHOTO.JPEG" alt="Souati Mohamed El Bachir" class="w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="async" onerror="handleProfileImageError(this);">
                         </div>
                         <div class="absolute top-0 right-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
                             <i class="fas fa-code"></i>
@@ -512,7 +540,7 @@
                 <!-- Project 1: Choffly -->
                 <div class="project-card bg-white rounded-lg overflow-hidden">
                     <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
-                        <img src="choffly.png" alt="Choffly" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='./choffly.png'; this.alt='Choffly Project';">
+                        <img src="choffly.png" alt="Choffly" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="handleProjectImageError(this, 'choffly.png');">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
@@ -531,7 +559,7 @@
                 <!-- Project 2: Mak-Luxury -->
                 <div class="project-card bg-white rounded-lg overflow-hidden">
                     <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
-                        <img src="mak.png" alt="Mak-Luxury" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='./mak.png'; this.alt='Mak-Luxury Project';">
+                        <img src="mak.png" alt="Mak-Luxury" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="handleProjectImageError(this, 'mak.png');">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
@@ -550,7 +578,7 @@
                 <!-- Project 3: Letters -->
                 <div class="project-card bg-white rounded-lg overflow-hidden">
                     <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
-                        <img src="korni.png" alt="Letters" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='./korni.png'; this.alt='Letters Project';">
+                        <img src="korni.png" alt="Letters" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="handleProjectImageError(this, 'korni.png');">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
@@ -692,6 +720,123 @@
 
     <!-- JavaScript -->
     <script>
+        // Profile image error handler with multiple fallback paths
+        function handleProfileImageError(img) {
+            const alternativePaths = [
+                './PHOTO.JPEG',
+                './photo.jpeg',
+                './PHOTO.jpg',
+                './photo.jpg',
+                './PHOTO.png',
+                './photo.png',
+                'PHOTO.JPEG',
+                'photo.jpeg',
+                'PHOTO.jpg',
+                'photo.jpg'
+            ];
+            
+            let currentAttempt = 0;
+            const maxAttempts = alternativePaths.length;
+            
+            function tryNextPath() {
+                if (currentAttempt < maxAttempts) {
+                    const testImg = new Image();
+                    testImg.onload = function() {
+                        img.src = alternativePaths[currentAttempt];
+                        img.onerror = null; // Remove error handler to prevent loop
+                        console.log('✓ Profile image loaded from: ' + alternativePaths[currentAttempt]);
+                    };
+                    testImg.onerror = function() {
+                        currentAttempt++;
+                        tryNextPath();
+                    };
+                    testImg.src = alternativePaths[currentAttempt];
+                } else {
+                    // All paths failed - show placeholder
+                    img.style.display = 'none';
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'w-full h-full flex items-center justify-center bg-gray-200 text-gray-500 text-2xl font-bold';
+                    placeholder.textContent = 'SM';
+                    img.parentElement.appendChild(placeholder);
+                    console.warn('⚠ Profile image not found. Please ensure PHOTO.JPEG exists in the same directory.');
+                }
+            }
+            
+            tryNextPath();
+        }
+        
+        // Project image error handler
+        function handleProjectImageError(img, imageName) {
+            const alternativePaths = [
+                './' + imageName,
+                imageName,
+                '../' + imageName,
+                'images/' + imageName,
+                './images/' + imageName
+            ];
+            
+            let currentAttempt = 0;
+            const maxAttempts = alternativePaths.length;
+            
+            function tryNextPath() {
+                if (currentAttempt < maxAttempts) {
+                    const testImg = new Image();
+                    testImg.onload = function() {
+                        img.src = alternativePaths[currentAttempt];
+                        img.onerror = null;
+                        console.log('✓ Project image loaded: ' + alternativePaths[currentAttempt]);
+                    };
+                    testImg.onerror = function() {
+                        currentAttempt++;
+                        tryNextPath();
+                    };
+                    testImg.src = alternativePaths[currentAttempt];
+                } else {
+                    // Show placeholder
+                    img.style.display = 'none';
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'w-full h-full flex items-center justify-center bg-gray-200 text-gray-500';
+                    placeholder.innerHTML = '<i class="fas fa-image text-4xl"></i>';
+                    img.parentElement.appendChild(placeholder);
+                    console.warn('⚠ Project image not found: ' + imageName);
+                }
+            }
+            
+            tryNextPath();
+        }
+        
+        // Preload profile image with multiple attempts
+        window.addEventListener('DOMContentLoaded', function() {
+            const profileImg = document.getElementById('profile-photo');
+            if (profileImg) {
+                const img = new Image();
+                img.onload = function() {
+                    console.log('✓ Profile image preloaded successfully');
+                };
+                img.onerror = function() {
+                    // Try alternative paths
+                    const altPaths = ['./PHOTO.JPEG', './photo.jpeg', 'PHOTO.JPEG', 'photo.jpeg'];
+                    let attempt = 0;
+                    function tryAlt() {
+                        if (attempt < altPaths.length) {
+                            const testImg = new Image();
+                            testImg.onload = function() {
+                                profileImg.src = altPaths[attempt];
+                                console.log('✓ Profile image found at: ' + altPaths[attempt]);
+                            };
+                            testImg.onerror = function() {
+                                attempt++;
+                                tryAlt();
+                            };
+                            testImg.src = altPaths[attempt];
+                        }
+                    }
+                    tryAlt();
+                };
+                img.src = 'PHOTO.JPEG';
+            }
+        });
+        
         // Dark Mode Toggle
         const darkModeToggle = document.getElementById('dark-mode-toggle');
         const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
@@ -810,6 +955,48 @@
                 img.src = imgInfo.src;
             });
         });
+        
+        // Performance optimization: Preconnect to CDN
+        const preconnectLink = document.createElement('link');
+        preconnectLink.rel = 'preconnect';
+        preconnectLink.href = 'https://cdn.jsdelivr.net';
+        document.head.appendChild(preconnectLink);
+        
+        // Performance optimization: Image loading with Intersection Observer for lazy images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            }, {
+                rootMargin: '50px'
+            });
+            
+            // Observe all lazy-loaded images
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+        
+        // Force profile image reload if not loaded after 2 seconds
+        setTimeout(function() {
+            const profileImg = document.getElementById('profile-photo');
+            if (profileImg && (!profileImg.complete || profileImg.naturalHeight === 0)) {
+                console.log('Retrying profile image load...');
+                const currentSrc = profileImg.src;
+                profileImg.src = '';
+                setTimeout(() => {
+                    profileImg.src = currentSrc;
+                }, 100);
+            }
+        }, 2000);
     </script>
 </body>
 </html>
